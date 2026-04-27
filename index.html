@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yichao Zhao — Media & Communications Researcher</title>
+<meta name="description" content="Yichao Zhao — Honorary Senior Research Fellow at UCL. Researcher in media and communications, digital governance, and human–AI interaction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Top Bar ── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0 2.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+}
+.topbar-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #111;
+  text-decoration: none;
+}
+.topbar-title {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  white-space: nowrap;
+}
+.topbar-contact {
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.topbar-contact:hover { opacity: 0.45; }
+
+/* ── Page Layout ── */
+.page-wrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  padding-top: 64px;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  padding: 4rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid #e8e8e8;
+}
+.sidebar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.sidebar-nav a {
+  font-size: 0.9rem;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+.sidebar-nav a:hover { color: #111; }
+.sidebar-nav a.active { color: #111; }
+.nav-num {
+  font-size: 0.72rem;
+  color: #ccc;
+  font-weight: 500;
+  min-width: 18px;
+}
+.sidebar-nav a:hover .nav-num,
+.sidebar-nav a.active .nav-num { color: #888; }
+.subnav {
+  list-style: none;
+  margin: 0 0 0 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.3s ease;
+}
+.sidebar-nav > li:hover .subnav,
+.sidebar-nav > li:has(> a.active) .subnav,
+.sidebar-nav > li:has(.subnav a.active) .subnav {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.55rem;
+}
+.subnav a {
+  font-size: 0.75rem;
+  color: #c8c8c8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.subnav a:hover { color: #555; }
+.subnav a.active { color: #111; font-weight: 500; }
+
+/* ── Main Content ── */
+.main { min-height: calc(100vh - 64px); }
+
+/* ── Hero ── */
+.hero {
+  min-height: calc(100vh - 64px);
+  padding: 5rem 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.hero-text {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #111;
+  max-width: 800px;
+}
+.hero-text strong em { font-style: italic; font-weight: 700; }
+.hero-text { overflow: visible; }
+
+/* ── Name interactive — floating + tooltip ── */
+@keyframes nameFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.name-interactive {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #1a4838;
+  font-style: italic;
+  font-weight: 700;
+  animation: nameFloat 2.6s ease-in-out infinite;
+}
+.name-tooltip {
+  display: block;
+  position: absolute;
+  left: 53%;
+  top: 6%;
+  width: 230px;
+  background: #F8F6F0;
+  border: 1px solid #D8D0C0;
+  border-radius: 18px;
+  padding: 1.2rem 1.3rem 1rem;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.09);
+  transform: rotate(0deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 300;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.name-tooltip.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.name-tooltip-drag {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #bbb;
+  cursor: grab;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+.name-tooltip-drag:active { cursor: grabbing; }
+.name-tooltip-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin-bottom: 0.75rem;
+  border: 2px solid rgba(216,212,144,0.5);
+}
+.name-tooltip-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+.name-tooltip-sub {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+.name-tooltip-cta {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #5a5010;
+  border-bottom: 1px solid rgba(90,80,16,0.3);
+  padding-bottom: 1px;
+}
+
+.hero-scroll-hint {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+.hero-scroll-hint-line { width: 36px; height: 1px; background: #ccc; }
+
+/* ── Section base ── */
+.section {
+  padding: 6rem 5rem;
+  border-top: 1px solid #e8e8e8;
+}
+.section-num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.01em;
+  color: #111;
+}
+.section-title em { font-style: italic; font-weight: 700; }
+
+/* ── About ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-photo {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(8%);
+}
+.about-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.about-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 2rem;
+}
+.about-bio {
+  font-size: 0.97rem;
+  line-height: 1.9;
+  color: #444;
+}
+.about-bio p + p { margin-top: 1.1rem; }
+.about-bio strong { font-weight: 600; color: #222; }
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.8rem;
+  border: 1px solid #ddd;
+  color: #555;
+}
+
+/* ── Teaching Timeline ── */
+.tl-outer {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0 3rem;
+}
+.tl-year-col {
+  position: relative;
+  padding-top: 0.3rem;
+}
+.tl-year-col::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 22px;
+  bottom: 0;
+  width: 1px;
+  background: #ddd;
+}
+.tl-year-marker {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.tl-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  background: #fff;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.tl-year {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ddd;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.tl-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.tl-item {
+  padding: 1.8rem 2rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  cursor: default;
+}
+.tl-item:hover {
+  background: #fff;
+  border-color: #e4e4e4;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+.tl-item-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.6rem;
+}
+.tl-item-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+.tl-item-sub {
+  font-size: 0.8rem;
+  color: #999;
+  font-style: italic;
+  margin-bottom: 0.9rem;
+}
+.tl-item-desc {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: #555;
+}
+.tl-group + .tl-group {
+  margin-top: 3.5rem;
+}
+/* Expand / case study */
+.tl-expand {
+  margin-top: 1.2rem;
+}
+.tl-expand summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+  border: 1.5px solid #111;
+  padding: 0.45rem 1.1rem;
+  border-radius: 40px;
+  list-style: none;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.tl-expand summary::-webkit-details-marker { display: none; }
+.tl-expand summary:hover { background: #111; color: #fff; }
+.tl-expand[open] summary { background: #111; color: #fff; }
+.tl-expand-body {
+  margin-top: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  background: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #ebebeb;
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: #444;
+  max-width: 640px;
+}
+.tl-expand-body p + p { margin-top: 0.9rem; }
+
+/* ── Teaching Modal ── */
+.tl-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+.tl-modal-overlay.open { display: flex; }
+.tl-modal {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 660px;
+  width: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
+  padding: 2.8rem 3rem;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+  animation: modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.tl-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.4rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #ddd;
+  background: #f8f8f8;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  color: #666;
+}
+.tl-modal-close:hover { background: #111; color: #fff; border-color: #111; }
+.tl-modal-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+.tl-modal-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1.8rem;
+  line-height: 1.2;
+}
+.tl-modal-section {
+  margin-bottom: 1.6rem;
+  padding: 1.4rem 1.6rem;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #ebebeb;
+}
+.tl-modal-section-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.7rem;
+}
+.tl-modal-section p {
+  font-size: 0.88rem;
+  line-height: 1.85;
+  color: #444;
+}
+.tl-modal-section p + p { margin-top: 0.8rem; }
+
+.tl-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+  border: 1.5px solid #111;
+  padding: 0.45rem 1.1rem;
+  border-radius: 40px;
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+  margin-top: 1.2rem;
+}
+.tl-expand-btn:hover { background: #111; color: #fff; }
+.tl-modal-img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin-top: 1rem;
+  border: 1px solid #e8e8e8;
+}
+.tl-modal-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.tl-modal-blog-grid img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  display: block;
+}
+.tl-modal-blog-caption {
+  font-size: 0.65rem;
+  color: #aaa;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.tl-schedule {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+}
+.tl-schedule th {
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+  padding: 0.4rem 1rem 0.6rem 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+.tl-schedule td {
+  padding: 0.65rem 1rem 0.65rem 0;
+  vertical-align: top;
+  border-bottom: 1px solid #f2f2f2;
+  color: #444;
+  line-height: 1.5;
+}
+.tl-schedule tr:last-child td { border-bottom: none; }
+.tl-schedule .week-num { color: #999; font-size: 0.72rem; white-space: nowrap; }
+.tl-schedule .reading-week td { color: #bbb; font-style: italic; }
+.tl-year-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tl-year-sep {
+  width: 24px;
+  height: 1px;
+  background: #ccc;
+  margin: 0.3rem 0;
+}
+.tl-year-divider {
+  display: none;
+}
+.tl-video-wrap {
+  margin: 1.4rem 0 1.2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.tl-video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
+
+/* ── Working With Me ── */
+.wwm-section {
+  border-top: 1px solid #e8e8e8;
+  padding: 2.5rem 2rem 3rem;
+  background: #ECE8DF;
+  overflow: hidden;
+}
+.wwm-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.wwm-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin-bottom: 0.8rem;
+}
+.wwm-sub {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.65;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Scene container */
+.wwm-scene {
+  position: relative;
+  min-height: 680px;
+  max-width: 1160px;
+  margin: 65px auto 0;
+}
+
+/* Central photo — now wrapped */
+
+/* Cards shared */
+.wwm-card {
+  position: absolute;
+  width: 260px;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  transition: box-shadow 0.25s ease;
+  cursor: default;
+}
+@keyframes wwm-wobble {
+  0%   { rotate: 0deg; }
+  30%  { rotate: -5deg; }
+  65%  { rotate: 3deg; }
+  100% { rotate: 0deg; }
+}
+.wwm-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,0.13);
+  z-index: 30 !important;
+  animation: wwm-wobble 0.9s ease both;
+}
+#wwm-photo-wrap:hover {
+  animation: wwm-wobble 0.9s ease both;
+}
+
+/* Card 1 — MA Student, lavender, BEHIND photo */
+.wwm-card--1 { background:#E8E0F5; border-color:#C4AEED; top:-8px; left:59px; z-index:2; transform:rotate(-8deg); width:486px; height:179px; right:auto; bottom:auto; overflow:hidden; }
+/* Card 2 — Line Manager, cream, IN FRONT */
+.wwm-card--2 { background:#FDFAE8; border-color:#E0D080; top:-55px; left:637px; z-index:6; transform:rotate(2deg); width:475px; height:180px; right:auto; bottom:auto; overflow:hidden; }
+/* Card 3 — MA Student, pink, IN FRONT */
+.wwm-card--3 { background:#FFE4E4; border-color:#F0AAAA; top:142px; left:681px; z-index:7; transform:rotate(-3deg); width:389px; height:279px; right:auto; bottom:auto; overflow:hidden; }
+/* Card 4 — Research Collab, white, BEHIND photo */
+.wwm-card--4 { background:#F8F6F0; border-color:#D8D0C0; top:194px; left:67px; z-index:2; transform:rotate(5deg); width:363px; height:255px; right:auto; bottom:auto; overflow:hidden; }
+/* Card 5 — MA Student, wide cream, IN FRONT of photo */
+.wwm-card--5 { background:#FAFAEA; border-color:#D8D490; top:443px; left:51px; z-index:8; transform:rotate(-8deg); width:519px; height:186px; right:auto; bottom:auto; overflow:hidden; }
+/* Card 6 — Research Collab, mint, IN FRONT */
+.wwm-card--6 { background:#F2FAF7; border:1.5px dashed #80C4B0; top:435px; left:604px; z-index:6; transform:rotate(3deg); width:536px; height:181px; right:auto; bottom:auto; overflow:hidden; }
+
+.wwm-card-source {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.wwm-card-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: 1.68;
+  color: #2a2a2a;
+}
+.wwm-card-text::before { content: '\201C'; }
+.wwm-card-text::after  { content: '\201D'; }
+
+/* Photo wrap — locked position */
+#wwm-photo-wrap {
+  position: absolute;
+  width: 260px;
+  top: 123px;
+  left: 428px;
+  right: auto;
+  bottom: auto;
+  transform: none;
+  z-index: 5;
+}
+/* Scene */
+#wwm-photo-wrap .wwm-card-ctrl {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  border-radius: 6px;
+  padding: 2px 6px;
+  z-index: 100;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.wwm-photo { width: 100%; display: block; filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15)); }
+
+/* Card controls (hidden until edit mode) */
+.wwm-card-ctrl {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.wwm-card-ctrl button {
+  font-size: 11px;
+  padding: 1px 6px;
+  background: rgba(0,0,0,0.08);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  line-height: 1.6;
+}
+.wwm-card-ctrl button:hover { background: rgba(0,0,0,0.18); }
+.wwm-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  margin-right: 4px;
+}
+
+
+/* Export output box */
+#wwm-output {
+  display: none;
+  max-width: 980px;
+  margin: 0 auto 1.5rem;
+  background: #1a1a1a;
+  color: #b8f0b8;
+  font-family: 'SF Mono', monospace;
+  font-size: 11px;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Edit-mode visual cues */
+.wwm-scene.edit-mode .wwm-card,
+.wwm-scene.edit-mode #wwm-photo-wrap {
+  cursor: grab;
+  outline: 2px dashed rgba(0,0,0,0.2);
+}
+.wwm-scene.edit-mode .wwm-card:active,
+.wwm-scene.edit-mode #wwm-photo-wrap:active { cursor: grabbing; }
+.wwm-scene.edit-mode .wwm-card-ctrl { display: flex; }
+
+/* Resize handle */
+.wwm-resize {
+  display: none;
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 16px; height: 16px;
+  cursor: se-resize;
+  background: rgba(0,0,0,0.15);
+  border-radius: 3px 0 8px 0;
+}
+.wwm-resize::after {
+  content: '⤡';
+  position: absolute;
+  bottom: 1px; right: 2px;
+  font-size: 10px;
+  color: #555;
+}
+.wwm-scene.edit-mode .wwm-resize { display: block; }
+
+/* ── Research ── */
+#research {
+  background: #f4f2ec;
+}
+.research-intro {
+  font-size: 0.97rem;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 4rem;
+}
+.research-intro strong { font-weight: 600; color: #222; }
+.research-block-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #1a4838;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(26,72,56,0.15);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.project-card {
+  padding: 1.8rem 2rem;
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: box-shadow 0.28s ease, transform 0.28s ease;
+}
+.project-card:hover {
+  box-shadow: 0 10px 32px rgba(0,0,0,0.11);
+  transform: translateY(-3px);
+}
+.project-card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.7rem;
+}
+.project-card-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  color: #1a4838;
+}
+.project-card-desc { font-size: 0.85rem; line-height: 1.8; color: #666; }
+.paper-item {
+  padding: 1.3rem 1.6rem;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.paper-text { font-size: 0.92rem; line-height: 1.7; color: #333; margin-bottom: 0.3rem; }
+.paper-status {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ccc;
+}
+/* conference card list */
+.conf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+.conf-item {
+  padding: 1.6rem 1.8rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  transition: box-shadow 0.32s ease, transform 0.32s ease, border-color 0.32s ease, background 0.32s ease;
+}
+.conf-item:hover {
+  background: #fff;
+  border-color: #ddd;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+.conf-venue {
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.55rem;
+}
+.conf-title-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+.conf-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #111;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+.conf-dotted-line {
+  flex: 1;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 0.9rem 0.22rem;
+  min-width: 1rem;
+}
+.conf-date-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  flex-shrink: 0;
+}
+/* upcoming — radar ping indicator */
+@keyframes radarPing {
+  0%   { transform: scale(1); opacity: 0.85; }
+  100% { transform: scale(3.8); opacity: 0; }
+}
+.conf-upcoming-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.conf-upcoming-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c4a84e;
+  position: relative;
+  flex-shrink: 0;
+}
+.conf-upcoming-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(196,168,78,0.7);
+  animation: radarPing 2s ease-out infinite;
+}
+.conf-upcoming-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b8963a;
+}
+/* regular badges */
+.conf-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid #e0e0e0;
+  color: #999;
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 0.65rem;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.conf-badge:hover { border-color: #bbb; color: #555; }
+.conf-desc { font-size: 0.87rem; line-height: 1.75; color: #555; margin-bottom: 0.75rem; }
+/* details toggle button */
+.conf-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: 1px solid #e0e0e0;
+  padding: 0.22rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.65rem;
+  color: #aaa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-family: inherit;
+  transition: border-color 0.22s, color 0.22s, background 0.22s;
+}
+.conf-more-btn:hover { color: #444; border-color: #aaa; background: #f7f7f5; }
+/* expand panel — gold-accent card */
+.conf-panel {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1.3rem 1.5rem 1.3rem 1.4rem;
+  background: linear-gradient(140deg, #fffef9 0%, #fafaf6 100%);
+  border-radius: 10px;
+  border: 1px solid #ede9d8;
+  border-left: 3px solid rgba(196,168,78,0.45);
+  box-shadow: 0 4px 20px rgba(196,168,78,0.07);
+}
+.conf-panel.open { display: block; }
+.conf-panel-img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 7px;
+  margin-bottom: 1.1rem;
+  display: block;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+.conf-panel-note { font-size: 0.82rem; color: #777; line-height: 1.72; margin-bottom: 0.9rem; }
+.conf-links { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.conf-link {
+  font-size: 0.68rem;
+  color: #7a6a3a;
+  background: rgba(196,168,78,0.07);
+  border: 1px solid rgba(196,168,78,0.35);
+  padding: 0.26rem 0.85rem;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.conf-link:hover { border-color: #c4a84e; color: #5a4a1a; background: rgba(196,168,78,0.13); }
+
+/* ── Research Project Showcase Cards ── */
+.project-card--showcase {
+  cursor: pointer;
+  border: none;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
+  will-change: transform;
+}
+.project-card--showcase:hover {
+  transform: rotate(0deg) translateY(-8px) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.13);
+}
+.project-card--mobile {
+  background: #F5E2CC;
+  transform: rotate(-1.8deg);
+}
+.project-card--smart {
+  background: #C9DDE8;
+  transform: rotate(1.2deg);
+}
+.project-card--mobile .project-card-tag { color: #A0622A; }
+.project-card--smart  .project-card-tag { color: #2A6580; }
+.project-card--mobile .project-card-title,
+.project-card--smart  .project-card-title { color: #111; }
+.rp-open-hint {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(0,0,0,0.38);
+}
+
+/* ── Research Project Slider Modal ── */
+.rp-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+}
+.rp-overlay.open { display: flex; }
+.rp-modal {
+  position: relative;
+  width: min(760px, 92vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  border-radius: 22px;
+  background: #fff;
+  animation: modalIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.rp-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 10;
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: rgba(0,0,0,0.1); cursor: pointer; font-size: 0.95rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.rp-slide {
+  padding: 3rem 3rem 4.5rem;
+  min-height: 480px;
+}
+.rp-slide-tag {
+  font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: rgba(0,0,0,0.4); margin-bottom: 0.7rem;
+}
+.rp-slide-title {
+  font-family: 'EB Garamond', serif; font-size: 2rem; font-weight: 400;
+  color: #111; margin-bottom: 0.5rem; line-height: 1.2;
+}
+.rp-slide-tagline {
+  font-size: 0.88rem; color: #555; line-height: 1.75; margin-bottom: 1.6rem;
+  max-width: 560px;
+}
+.rp-slide-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 1.4rem; }
+.rp-slide-imgs.single { grid-template-columns: 1fr; }
+.rp-slide-imgs img { width: 100%; border-radius: 10px; border: 1px solid rgba(0,0,0,0.07); display: block; }
+.rp-slide-insights { padding-left: 1.1rem; margin-bottom: 1.2rem; }
+.rp-slide-insights li { font-size: 0.84rem; line-height: 1.75; color: #444; margin-bottom: 0.45rem; }
+.rp-slide-methods { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.rp-method { font-size: 0.65rem; padding: 0.18rem 0.55rem; border: 1px solid rgba(0,0,0,0.14); color: #777; }
+.rp-nav {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5rem; padding: 1rem 0 1.2rem;
+  background: inherit;
+}
+.rp-arrow {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid #ddd;
+  background: #fff; cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.rp-arrow:hover { background: #f5f5f5; border-color: #bbb; }
+.rp-arrow:disabled { opacity: 0.3; cursor: default; }
+.rp-dots { display: flex; gap: 0.4rem; align-items: center; }
+.rp-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #ddd; cursor: pointer; transition: background 0.2s, transform 0.2s;
+}
+.rp-dot.active { background: #555; transform: scale(1.3); }
+.conf-photo:hover { opacity: 0.88; }
+.conf-photo--tall { aspect-ratio: 3/4; grid-column: 1 / -1; }
+.conf-photo--sq   { aspect-ratio: 1/1; }
+
+/* ── Contact ── */
+.contact-tagline {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 4rem;
+  letter-spacing: -0.01em;
+  max-width: 100%;
+}
+.contact-items { display: flex; flex-direction: column; gap: 2rem; }
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.contact-row-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bbb;
+  width: 80px;
+  flex-shrink: 0;
+}
+.contact-row-value {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  color: #111;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+a.contact-row-value:hover { opacity: 0.5; }
+
+/* ── Footer ── */
+.footer {
+  padding: 2.5rem 5rem;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-text { font-size: 0.7rem; color: #ccc; letter-spacing: 0.06em; }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero, .section, .footer { padding-left: 3rem; padding-right: 3rem; }
+  .about-grid { grid-template-columns: 200px 1fr; gap: 3rem; }
+  .conf-cols { grid-template-columns: 1fr; gap: 3rem; }
+  .wwm-scene { grid-template-columns: 1fr 220px 1fr; }
+  .wwm-photo { width: 220px; }
+}
+@media (max-width: 768px) {
+  .topbar { grid-template-columns: 1fr auto; }
+  .topbar-title { display: none; }
+  .page-wrap { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .hero, .section, .footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 240px; }
+  .tl-outer { grid-template-columns: 1fr; }
+  .tl-year-col { padding-bottom: 0.5rem; }
+  .tl-year-col::after { display: none; }
+  .tl-year-marker { position: static; }
+  .tl-year { font-size: 1.8rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .wwm-section { padding: 4rem 1.5rem; }
+  .wwm-scene { min-height: auto; display: flex; flex-direction: column; gap: 1rem; position: static; }
+  .wwm-photo { position: static; width: 180px; transform: none; margin: 1rem auto; }
+  .wwm-card { position: static; width: 100%; transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Top Bar ── -->
+<header class="topbar">
+  <a href="#top" class="topbar-name">Dr Yichao Zhao</a>
+  <span class="topbar-title">Honorary Senior Research Fellow @ UCL &thinsp;·&thinsp; AFHEA</span>
+  <a href="#contact" class="topbar-contact">Contact</a>
+</header>
+
+<div class="page-wrap" id="top">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <ul class="sidebar-nav">
+      <li><a href="#about"><span class="nav-num">1.</span> About</a></li>
+      <li><a href="#teaching"><span class="nav-num">2.</span> Teaching</a></li>
+      <li><a href="#working-with-me"><span class="nav-num">3.</span> Working with Me</a></li>
+      <li>
+        <a href="#research"><span class="nav-num">4.</span> Research</a>
+        <ul class="subnav">
+          <li><a href="#research-current">Current Projects</a></li>
+          <li><a href="#research-previous">Previous Projects</a></li>
+          <li><a href="#research-conf">Conference Presentations</a></li>
+          <li><a href="#research-papers">Working Papers</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact"><span class="nav-num">5.</span> Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <p class="hero-text">
+        Hi, I'm <span class="name-interactive" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Yichao</span>.<br>
+        I study everyday life<br>
+        with <strong><em>media technologies</em></strong><br>
+        and <strong><em>digital governance.</em></strong>
+      </p>
+      <div class="name-tooltip" id="nameTooltip">
+        <img src="profile.jpg" class="name-tooltip-img" alt="Dr Yichao Zhao">
+        <span class="name-tooltip-name">Dr Yichao Zhao</span>
+        <span class="name-tooltip-sub">Researcher · UCL<br>Digital Governance · Human–AI Interaction</span>
+        <span class="name-tooltip-cta">Click to learn more →</span>
+      </div>
+      <div class="hero-scroll-hint">
+        <div class="hero-scroll-hint-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ── About ── -->
+    <section class="section" id="about">
+      <p class="section-num reveal">01</p>
+      <h2 class="section-title reveal">About <em>Me</em></h2>
+      <div class="about-grid">
+        <div class="reveal">
+          <img src="profile.jpg" alt="Dr Yichao Zhao" class="about-photo">
+        </div>
+        <div>
+          <div class="about-bio reveal delay-2">
+            <p>I study how people experience and make sense of digital systems and forms of governance in everyday life, from location-aware mobile platforms to emerging AI technologies.</p>
+            <p>My doctoral research examined how location-aware smartphones reshape spatial practice and civic identity in Chinese residential communities.</p>
+            <p>My current work extends into human–AI interaction, focusing on how individuals interpret, trust, and respond to AI-generated content and algorithmic decision-making in everyday platform environments. Across my research, I am interested in how digital systems are not only used, but understood, negotiated, and made meaningful in practice.</p>
+            <p>I also teach on the MA Digital Media programme at UCL, with a particular focus on research methods and supporting students in developing their own research projects. I am especially interested in making complex theoretical and methodological concepts clear, structured, and applicable to students' own work.</p>
+          </div>
+          <div class="about-tags reveal delay-3">
+            <span class="tag">Digital Governance</span>
+            <span class="tag">Mobile Media</span>
+            <span class="tag">Human–AI Interaction</span>
+            <span class="tag">Qualitative Methods</span>
+            <span class="tag">Internet Cultures</span>
+            <span class="tag">Algorithmic Systems</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Teaching ── -->
+    <section class="section" id="teaching">
+      <p class="section-num reveal">02</p>
+      <h2 class="section-title reveal"><em>Teaching</em></h2>
+
+      <!-- 2023–2025 group -->
+      <div class="tl-outer tl-group reveal">
+        <div class="tl-year-col">
+          <div class="tl-year-marker">
+            <span class="tl-dot"></span>
+            <div class="tl-year-stack">
+              <span class="tl-year">2023</span>
+              <span class="tl-year-sep"></span>
+              <span class="tl-year">2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-items">
+
+          <!-- Digital Media Inquiry -->
+          <div class="tl-item">
+            <p class="tl-item-label">Core Module · MA Digital Media: Education · UCL</p>
+            <h3 class="tl-item-title">Digital Media Inquiry</h3>
+            <p class="tl-item-sub">Research Design &amp; Ethics</p>
+            <p class="tl-item-desc">I scripted and generated this video to visualise the full arc of Digital Media and Inquiry, from research ethics and question formation to methodological decision-making. It was a way of reflecting on the module I taught.</p>
+            <div class="tl-video-wrap">
+              <video class="tl-video" autoplay loop muted playsinline>
+                <source src="media-inquiry.mov" type="video/mp4">
+              </video>
+            </div>
+            <button class="tl-expand-btn" onclick="openTlModal('modal-inquiry')">Read Details →</button>
+          </div>
+
+          <!-- Internet Cultures -->
+          <div class="tl-item">
+            <p class="tl-item-label">Core Module · MA Digital Media: Education · UCL</p>
+            <h3 class="tl-item-title">Internet Cultures</h3>
+            <p class="tl-item-sub">Platforms, Identity &amp; Web-Based Practice</p>
+            <p class="tl-item-desc">I generated the video below, drawing on the module's reading list and seminar content. It is not a recording of my teaching, but a purpose-made overview of the theoretical arc of the course, covering key themes from identity and self-presentation to platform culture and algorithmic mediation.</p>
+            <div class="tl-video-wrap">
+              <video class="tl-video" autoplay loop muted playsinline>
+                <source src="Online identity.mov" type="video/mp4">
+              </video>
+            </div>
+            <button class="tl-expand-btn" onclick="openTlModal('modal-internet')">Read Details →</button>
+          </div>
+
+          <!-- Dissertation Workshop -->
+          <div class="tl-item">
+            <p class="tl-item-label">MA Digital Media: Education · UCL</p>
+            <h3 class="tl-item-title">Dissertation &amp; Report Workshop</h3>
+            <p class="tl-item-sub">Research Writing &amp; Supervision</p>
+            <p class="tl-item-desc">I generated the video below, drawing on the workshop content I delivered. This course supported MA students through the writing and research process for their dissertations and research reports, covering research framing, literature review construction, methodology choice, and analytical writing.</p>
+            <div class="tl-video-wrap">
+              <video class="tl-video" autoplay loop muted playsinline>
+                <source src="Dissertation.mov" type="video/mp4">
+              </video>
+            </div>
+            <button class="tl-expand-btn" onclick="openTlModal('modal-dissertation')">Read Details →</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2020 group -->
+      <div class="tl-outer tl-group reveal delay-1" style="margin-top:3.5rem;">
+        <div class="tl-year-col">
+          <div class="tl-year-marker">
+            <span class="tl-dot"></span>
+            <span class="tl-year">2020</span>
+          </div>
+        </div>
+        <div class="tl-items">
+
+          <!-- Digital Games and Play -->
+          <div class="tl-item">
+            <p class="tl-item-label">Core Module · MA Digital Media, Culture and Education · UCL</p>
+            <h3 class="tl-item-title">Digital Games and Play</h3>
+            <p class="tl-item-sub">Game Studies &amp; Play Theory</p>
+            <p class="tl-item-desc">Introduced students to game studies as an academic discipline, drawing on theories of play, interactivity, and cultural analysis to examine digital games as both texts and social phenomena.</p>
+          </div>
+
+          <!-- Mobile Media and Place -->
+          <div class="tl-item">
+            <p class="tl-item-label">Core Module · MA Digital Media, Culture and Education · UCL</p>
+            <h3 class="tl-item-title">Mobile Media and Place</h3>
+            <p class="tl-item-sub">Location, Mobility &amp; Spatial Practice</p>
+            <p class="tl-item-desc">Examined how mobile and location-aware technologies reshape our experience of place, movement, and urban life, drawing on media geography, platform studies, and mobile communication research.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── Working With Me ── -->
+    <section class="wwm-section" id="working-with-me">
+      <div class="wwm-header">
+        <h2 class="wwm-heading reveal">What's it like <em>working with me?</em></h2>
+        <p class="wwm-sub reveal delay-1">I aim to make research clear, useful, and grounded in how people actually experience the world.</p>
+      </div>
+
+
+      <div class="wwm-scene" id="wwm-scene">
+        <div id="wwm-photo-wrap">
+          <div class="wwm-card-ctrl" id="wwm-photo-ctrl"><span class="wwm-card-label">📷</span><button onclick="wwmPhotoZ(-1)">↓</button><button onclick="wwmPhotoZ(1)">↑</button></div>
+          <img src="yichao-wave.png" alt="Yichao Zhao" class="wwm-photo" id="wwm-photo">
+        </div>
+
+        <div class="wwm-card wwm-card--1" data-rot="-8">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">1</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">Line Manager · UCL</p>
+          <p class="wwm-card-text">I don't think I've ever had to double-check anything Yichao handed over. Every file was clean, every detail was accounted for. That kind of reliability made the whole team's work easier.</p>
+        </div>
+
+        <div class="wwm-card wwm-card--2" data-rot="2">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">2</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">MA Digital Media Student · UCL</p>
+          <p class="wwm-card-text">Yichao's guidance on identity performance theory was really useful when I was trying to analyse my data. Her explanation of the codebook structure was also very clear and practical.</p>
+        </div>
+
+        <div class="wwm-card wwm-card--3" data-rot="-3">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">3</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">MA Digital Media Student · UCL</p>
+          <p class="wwm-card-text">When I started my MA, I was genuinely worried about the assignments. My background is in business, so I had no experience writing long academic essays. Yichao arranged a meeting, walked me through the structure, and showed me examples on Moodle. I felt much more confident after that.</p>
+        </div>
+
+        <div class="wwm-card wwm-card--4" data-rot="5">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">4</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">Research Collaborator</p>
+          <p class="wwm-card-text">Yichao has this instinct for picking up new tools before most people have heard of them. When the rest of us were still figuring out how AI fit into qualitative research, she'd already started experimenting and was bringing the rest of us along.</p>
+        </div>
+
+        <div class="wwm-card wwm-card--5" data-rot="-8">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">5</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">MA Digital Media Student · UCL</p>
+          <p class="wwm-card-text">English is my second language and there were methodology terms I couldn't follow. I dropped Yichao an email and she walked through the logic step by step until it clicked. She never made you feel like your question was a bad one.</p>
+        </div>
+
+        <div class="wwm-card wwm-card--6" data-rot="3">
+          <div class="wwm-resize" onmousedown="wwmResizeStart(event,this)"></div><div class="wwm-card-ctrl"><span class="wwm-card-label">6</span><button onclick="wwmZ(this,-1)">↓</button><button onclick="wwmZ(this,1)">↑</button></div>
+          <p class="wwm-card-source">Research Collaborator</p>
+          <p class="wwm-card-text">What stood out was that she kept asking what the data actually meant. She'd push back on surface-level interpretations and bring the group back to the bigger question. That kind of thinking is hard to teach, and it made our work sharper.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Research ── -->
+    <section class="section" id="research">
+      <p class="section-num reveal">04</p>
+      <h2 class="section-title reveal"><em>Research</em></h2>
+      <p class="research-intro reveal">
+        My research explores how people use and experience mobile and digital media in everyday life, drawing out questions of <strong>digital governance</strong>, <strong>identity</strong>, and <strong>trust</strong> as they emerge from the ground up. It has moved from location-based technologies and surveillance during China's pandemic response to how individuals interpret and negotiate <strong>AI-generated content</strong> and algorithmic decision-making in contemporary platform environments.
+      </p>
+
+      <p class="research-block-title reveal" id="research-current">Current Projects</p>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <p class="project-card-tag">Ongoing · UCL</p>
+          <h3 class="project-card-title">Human–AI Interaction in Everyday Contexts</h3>
+          <p class="project-card-desc">A project investigating how individuals interpret and respond to AI-generated content in everyday platform environments, with a focus on trust, compliance, and perceived legitimacy, employing diary-based methods.</p>
+        </div>
+        <div class="project-card reveal delay-1">
+          <p class="project-card-tag">Ongoing · UCL</p>
+          <h3 class="project-card-title">Algorithmic Decision-Making &amp; User Trust</h3>
+          <p class="project-card-desc">Drawing on ethnographic fieldwork conducted during China's pandemic response, this project examines how individuals navigated the opacity of health and mobility tracking systems, and how uncertainty about algorithmic logic shaped compliance, resistance, and everyday movement. Data collection is complete and the project is currently being developed for publication.</p>
+        </div>
+      </div>
+
+      <p class="research-block-title reveal" id="research-previous">Previous Projects</p>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <p class="project-card-tag">PhD Research · UCL · 2019–2025</p>
+          <h3 class="project-card-title">(IM)Mobile Connectivity</h3>
+          <p class="project-card-desc">Investigated how residents in Chinese residential communities use location-aware smartphones to interact with their environment, negotiate civic identity, and navigate state governance. Employed an ethnographic approach across two years of fieldwork during the pandemic, examining location-based services in everyday life and state health crisis management.</p>
+        </div>
+        <div class="project-card reveal delay-1">
+          <p class="project-card-tag">Consulting · KPMG Advisory China · Aug–Oct 2021</p>
+          <h3 class="project-card-title">Smart City &amp; Digital Transformation</h3>
+          <p class="project-card-desc">Part of a consulting team on a government-funded £4.3m digital transformation project. Conducted focus groups to assess user engagement with urban digital infrastructure, identified pain points, and contributed to developing strategies to improve smart city service delivery. Also contributed to a smart tourism platform project, covering user needs assessment, digital integration design, and planning activities.</p>
+        </div>
+      </div>
+
+      <p class="research-block-title reveal" id="research-conf" style="margin-top: 4rem;">Conference Presentations</p>
+      <div class="conf-list">
+
+        <!-- 1. AI and Research — Upcoming -->
+        <div class="conf-item reveal">
+          <p class="conf-venue">University College London &nbsp;·&nbsp; London, UK &nbsp;(In-person)</p>
+          <div class="conf-title-row">
+            <span class="conf-title">AI and Research — Invited Talk</span>
+            <span class="conf-dotted-line"></span>
+            <span class="conf-date-label">May 2026</span>
+          </div>
+          <span class="conf-upcoming-indicator">
+            <span class="conf-upcoming-dot"></span>
+            <span class="conf-upcoming-label">Upcoming</span>
+          </span>
+        </div>
+
+        <!-- 2. AI as a Research Companion -->
+        <div class="conf-item reveal delay-1">
+          <p class="conf-venue">Doctoral Association &nbsp;·&nbsp; London, UK (Online) &nbsp;·&nbsp; Invited Talk</p>
+          <div class="conf-title-row">
+            <span class="conf-title">AI as a Research Companion: Integrating AI into Qualitative Research</span>
+            <span class="conf-dotted-line"></span>
+            <span class="conf-date-label">Apr 2026</span>
+          </div>
+          <span class="conf-badge">Invited Speaker</span>
+          <p class="conf-desc">A talk exploring how large language models can support qualitative researchers at each stage of fieldwork, covering literature synthesis, interview coding, and thematic analysis.</p>
+          <button class="conf-more-btn" onclick="toggleConf('conf-panel-2',this)">Details ↓</button>
+          <div class="conf-panel" id="conf-panel-2">
+            <img class="conf-panel-img" src="talk-ai-companion.png" alt="AI as a Research Companion, talk slide">
+            <p class="conf-panel-note">The talk was summarised in two articles published by the organising association:</p>
+            <div class="conf-links">
+              <a class="conf-link" href="https://mp.weixin.qq.com/s/bBb5Dv1RT4Sh-ItjMkgUVg" target="_blank" rel="noopener">Article 1</a>
+              <a class="conf-link" href="https://mp.weixin.qq.com/s/IkB_tbYCitLktH9pBlwytA" target="_blank" rel="noopener">Article 2</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Digital Governance in Everyday Life — Zhuhai -->
+        <div class="conf-item reveal delay-1">
+          <p class="conf-venue">Zhuhai Municipal Government &amp; Provincial Stakeholders &nbsp;·&nbsp; Zhuhai, China &nbsp;(In-person)</p>
+          <div class="conf-title-row">
+            <span class="conf-title">Digital Governance in Everyday Life: Understanding Public Experience of Platform Systems</span>
+            <span class="conf-dotted-line"></span>
+            <span class="conf-date-label">Jan 2026</span>
+          </div>
+          <span class="conf-badge">Invited Speaker</span>
+          <p class="conf-desc">An invited presentation to municipal and provincial government stakeholders, sharing research insights on how residents experience algorithmically managed public services and smart-city platforms in their daily lives.</p>
+          <button class="conf-more-btn" onclick="toggleConf('conf-panel-3',this)">Photos ↓</button>
+          <div class="conf-panel-photo" id="conf-panel-3" style="display:none; margin-top:1.1rem;">
+            <img class="conf-panel-img" src="talk-zhuhai.jpg" alt="Zhuhai government talk, January 2026" style="border-radius:8px; box-shadow:0 6px 24px rgba(0,0,0,0.1); max-width:520px; width:100%; display:block;">
+          </div>
+        </div>
+
+        <!-- 4. ICA 2023 Toronto -->
+        <div class="conf-item reveal delay-2">
+          <p class="conf-venue">International Communication Association Annual Conference &nbsp;·&nbsp; Toronto, Canada &nbsp;(In-person)</p>
+          <div class="conf-title-row">
+            <span class="conf-title">Location-aware Smartphones: Socio-Spatial Interactions and Surveillance in Chinese Communities</span>
+            <span class="conf-dotted-line"></span>
+            <span class="conf-date-label">2023</span>
+          </div>
+          <span class="conf-badge">Poster Presentation</span>
+          <p class="conf-desc">A poster presenting qualitative findings from in-depth interviews and self-reported diaries, examining how residents in Chinese residential communities navigate location-tracking practices, socio-spatial interaction, and surveillance.</p>
+        </div>
+
+        <!-- 5. IOE Summer Conference 2020 -->
+        <div class="conf-item reveal delay-2">
+          <p class="conf-venue">IOE Summer Conference &nbsp;·&nbsp; University College London &nbsp;(Online)</p>
+          <div class="conf-title-row">
+            <span class="conf-title">The Quest for Visibility: Algorithmic Location Profiling in China during COVID-19</span>
+            <span class="conf-dotted-line"></span>
+            <span class="conf-date-label">2020</span>
+          </div>
+          <span class="conf-badge">Paper Presentation</span>
+          <p class="conf-desc">Presented during the COVID-19 pandemic via online conference. The paper introduced a self-reported diary methodology to study how residents experienced health-code and location-profiling systems during lockdown in China.</p>
+        </div>
+
+      </div>
+
+      <p class="research-block-title reveal" id="research-papers" style="margin-top: 4rem;">Working Papers</p>
+      <div class="paper-item reveal">
+        <p class="paper-text">Zhao, Y. <em>From Self-Presentation to State-Mandated Identity Performance: Datafied Citizenship and Digital Nationalism in China's Contact Tracing Platforms.</em></p>
+        <p class="paper-status">Working paper</p>
+      </div>
+      <div class="paper-item reveal delay-1">
+        <p class="paper-text">Zhao, Y. <em>Locational Media as Civic Participation: Digital Regulation, Community Engagement, and Place-Making in Chinese Residential Communities.</em></p>
+        <p class="paper-status">Working paper</p>
+      </div>
+
+    </section>
+
+    <!-- ── Contact ── -->
+    <section class="section" id="contact">
+      <p class="section-num reveal">05</p>
+      <h2 class="section-title reveal">Get in <em>Touch</em></h2>
+      <p class="contact-tagline reveal">I'd love to hear from you, whether it's about research, teaching, or collaboration.</p>
+      <div class="contact-items">
+        <div class="contact-row reveal">
+          <span class="contact-row-label">Email</span>
+          <a href="mailto:yichao.zhao@ucl.ac.uk" class="contact-row-value">yichao.zhao@ucl.ac.uk</a>
+        </div>
+        <div class="contact-row reveal delay-1">
+          <span class="contact-row-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/dr-yichao-zhao" target="_blank" rel="noopener" class="contact-row-value">linkedin.com/in/dr-yichao-zhao</a>
+        </div>
+        <div class="contact-row reveal delay-2">
+          <span class="contact-row-label">Institution</span>
+          <span class="contact-row-value">UCL Institute of Education, London</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-text">© 2026 Yichao Zhao</span>
+      <span class="footer-text">Honorary Senior Research Fellow · UCL</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  const nameEl = document.querySelector('.name-interactive');
+  const tooltip = document.getElementById('nameTooltip');
+  if (!nameEl || !tooltip) return;
+
+  let hideTimer;
+  function showTip() { clearTimeout(hideTimer); tooltip.classList.add('visible'); }
+  function hideTip() { hideTimer = setTimeout(() => tooltip.classList.remove('visible'), 250); }
+  nameEl.addEventListener('mouseenter', showTip);
+  nameEl.addEventListener('mouseleave', hideTip);
+  tooltip.addEventListener('mouseenter', showTip);
+  tooltip.addEventListener('mouseleave', hideTip);
+  tooltip.addEventListener('click', () => document.getElementById('about').scrollIntoView({behavior:'smooth'}));
+})();
+
+(function () {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+(function () {
+  const sections = document.querySelectorAll('section[id]');
+  const topLinks = document.querySelectorAll('.sidebar-nav > li > a');
+  const subLinks = document.querySelectorAll('.subnav a');
+
+  const sectionIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        topLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-nav > li > a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sectionIo.observe(s));
+
+  const subIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        subLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.subnav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+        const researchLink = document.querySelector('.sidebar-nav > li > a[href="#research"]');
+        if (researchLink) researchLink.classList.add('active');
+      }
+    });
+  }, { threshold: 1.0, rootMargin: '0px 0px -55% 0px' });
+  document.querySelectorAll('[id^="research-"]').forEach(h => subIo.observe(h));
+})();
+
+
+
+function toggleConf(id, btn) {
+  const panel = document.getElementById(id);
+  const isPhoto = panel.classList.contains('conf-panel-photo');
+  let isOpen;
+  if (isPhoto) {
+    isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    isOpen = !isOpen;
+  } else {
+    panel.classList.toggle('open');
+    isOpen = panel.classList.contains('open');
+  }
+  btn.textContent = btn.textContent.replace(isOpen ? '↓' : '↑', isOpen ? '↑' : '↓');
+}
+
+function openTlModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTlModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.tl-modal-overlay.open').forEach(function(m) {
+      m.classList.remove('open');
+    });
+    document.body.style.overflow = '';
+  }
+});
+</script>
+<!-- ── Teaching Modals ── -->
+
+<div class="tl-modal-overlay" id="modal-inquiry" onclick="if(event.target===this)closeTlModal('modal-inquiry')">
+  <div class="tl-modal">
+    <button class="tl-modal-close" onclick="closeTlModal('modal-inquiry')">✕</button>
+    <p class="tl-modal-tag">Core Module · MA Digital Media: Education · UCL</p>
+    <h3 class="tl-modal-title">Digital Media Inquiry</h3>
+    <div class="tl-modal-section">
+      <p class="tl-modal-section-label">Module Overview</p>
+      <p>This module introduced postgraduate students to the full arc of research design in digital media contexts, covering audience and textual methods, research ethics (BERA frameworks, GDPR, informed consent), and data collection and analysis. Throughout the term, students engaged with a range of practical tasks that grounded methodological concepts in direct experience.</p>
+      <p>Two examples include <em>A Place I Call Home</em>, where students created photo essays to explore how researcher positionality shapes data selection, and <em>Lumière Minutes</em>, where students produced one-minute videos of everyday London life as primary data for developing individual research questions.</p>
+      <img src="place-i-call-home.png" alt="A Place I Call Home — student Miro boards" class="tl-modal-img">
+      <p class="tl-modal-blog-caption">A Place I Call Home · Student work on Miro</p>
+      <img src="lumiere-minutes.png" alt="Lumière Minutes — student work on Padlet" class="tl-modal-img" style="margin-top:1rem;">
+      <p class="tl-modal-blog-caption">Lumière Minutes · Student work on Padlet</p>
+    </div>
+    <div class="tl-modal-section">
+      <p class="tl-modal-section-label">What I Did</p>
+      <p>I delivered weekly seminar teaching to a cohort of over 60 postgraduate students, approximately 95% international. Each session combined conceptual input with in-class group discussion, where I provided real-time feedback and guided students through that week's practical tasks.</p>
+      <p>I taught research ethics through BERA case studies and GDPR frameworks, and led sessions on research question formation, drawing on my own doctoral research to model how a broad topic is narrowed to a precise, answerable question. I also provided regular written feedback on students' weekly work and detailed comments on individual research proposals, identifying conceptual gaps and supporting students in developing methodological precision.</p>
+    </div>
+  </div>
+</div>
+
+<div class="tl-modal-overlay" id="modal-internet" onclick="if(event.target===this)closeTlModal('modal-internet')">
+  <div class="tl-modal">
+    <button class="tl-modal-close" onclick="closeTlModal('modal-internet')">✕</button>
+    <p class="tl-modal-tag">Core Module · MA Digital Media: Education · UCL</p>
+    <h3 class="tl-modal-title">Internet Cultures</h3>
+    <div class="tl-modal-section">
+      <p class="tl-modal-section-label">Module Overview</p>
+      <p>This module examined how culture is produced, circulated, and contested in networked environments, covering platform dynamics, identity and self-presentation, participatory culture, digital literacies, and AI and algorithmic mediation. Alongside theoretical seminars, students built their own thematic websites and published weekly blog posts responding to the module's themes, developing both a critical framework and a public-facing portfolio over the course of the term.</p>
+    </div>
+    <div class="tl-modal-section">
+      <p class="tl-modal-section-label">What I Did</p>
+      <p>I delivered seminar teaching each week, facilitating discussion that connected theoretical frameworks to platforms and media practices students were already embedded in. Beyond the seminars, I provided regular written feedback and comments on students' weekly blog posts, responding to their arguments, pointing to relevant theory, and helping them develop a clearer analytical voice across the term.</p>
+      <p>Students chose their own thematic focus for their websites, from horror film as cultural reflection to Korean cinema to travel and urban heritage. My role was to support them in connecting their chosen subject to the module's theoretical concerns, and to give formative feedback that helped each student deepen their analysis week by week.</p>
+      <img src="blog-horror.png" alt="Horror as Film Genre" class="tl-modal-img">
+      <p class="tl-modal-blog-caption" style="margin-top:0.3rem; margin-bottom:0.8rem;">Horror as Film Genre</p>
+      <img src="blog-beijing.png" alt="Beijing: History and Heritage" class="tl-modal-img">
+      <p class="tl-modal-blog-caption" style="margin-top:0.3rem; margin-bottom:0.8rem;">Beijing: History &amp; Heritage</p>
+      <img src="blog-korean.png" alt="Korean Cinema" class="tl-modal-img">
+      <p class="tl-modal-blog-caption" style="margin-top:0.3rem;">Korean Cinema</p>
+    </div>
+  </div>
+</div>
+
+<div class="tl-modal-overlay" id="modal-dissertation" onclick="if(event.target===this)closeTlModal('modal-dissertation')">
+  <div class="tl-modal">
+    <button class="tl-modal-close" onclick="closeTlModal('modal-dissertation')">✕</button>
+    <p class="tl-modal-tag">MA Digital Media: Education · UCL</p>
+    <h3 class="tl-modal-title">Dissertation &amp; Report Workshop</h3>
+    <div class="tl-modal-section">
+      <p class="tl-modal-section-label">What I did</p>
+      <p>I supported MA students' dissertations and research reports through dissertation workshops and one-to-one consultations. This included research framing, argument development, and academic writing at different stages of the writing process.</p>
+    </div>
+    <img src="teaching-lectern.jpg" alt="Yichao teaching at UCL" class="tl-modal-img" style="margin-top:1.2rem;">
+  </div>
+</div>
+
+
+</body>
+</html>
